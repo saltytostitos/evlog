@@ -141,6 +141,11 @@ function prettyPrintWideEvent(event: Record<string, unknown>): void {
   let header = `${colors.dim}${ts}${colors.reset} ${levelColor}${(level as string).toUpperCase()}${colors.reset}`
   header += ` ${colors.cyan}[${service}]${colors.reset}`
 
+  if (rest.event) {
+    header += `${colors.magenta} ${rest.event}${colors.reset}`
+    delete rest.event
+  }
+  
   if (rest.method && rest.path) {
     header += ` ${rest.method} ${rest.path}`
     delete rest.method
